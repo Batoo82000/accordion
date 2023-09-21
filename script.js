@@ -1,21 +1,20 @@
 "use strict";
 
-let acc = document.getElementsByClassName("accordion");
-let i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        let panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
+document.addEventListener("DOMContentLoaded", function () {
+    // Sélectionnez tous les éléments d'accordéon
+    let accordions = document.querySelectorAll('.accordion');
+  
+    // Ajoutez un gestionnaire d'événements à chaque élément d'accordéon
+    accordions.forEach(function (accordion) {
+      let accordionBtn = accordion.querySelector('.accordion_btn');
+      let accordionContent = accordion.querySelector('.accordion_content');
+  
+      accordionBtn.addEventListener("click", function () {
+        if (accordionContent.classList.contains("active")) {
+          accordionContent.classList.remove("active");
         } else {
-            panel.style.display = "block";
+          accordionContent.classList.add("active");
         }
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-        } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-        }
+      });
     });
-} 
+  });
